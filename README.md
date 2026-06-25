@@ -9,7 +9,7 @@ Tudo começou de forma bem artesanal, através de uma planilha compartilhada no 
 Apesar da automação funcionar perfeitamente, a usabilidade esbarrou em um grande obstáculo: **o mobile**. Navegar, atualizar e buscar dados na planilha através da tela do celular era uma experiência frustrante e complicada.
 
 **A Solução**
-Foi assim que surgiu a ideia de desenvolver o **[Nome do App]**. Ele foi criado para ser um aplicativo próprio, mantendo a essência colaborativa da planilha original (onde dados são compartilhados com usuários convidados), mas oferecendo uma interface amigável, ágil e pensada para o uso no celular.
+Foi assim que surgiu a ideia de desenvolver o **Backlog-App**. Ele foi criado para ser um aplicativo próprio, mantendo a essência colaborativa da planilha original (onde dados são compartilhados com usuários convidados), mas oferecendo uma interface amigável, ágil e pensada para o uso no celular.
 
 ### ✨ Principais Funcionalidades (Previstas/Atuais)
 * **Organização de Recomendações:** Salve filmes e séries indicados em um só lugar.
