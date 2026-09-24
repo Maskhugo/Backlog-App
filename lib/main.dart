@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'data/mock_movies.dart';
+import 'widgets/movie_card.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -29,8 +32,10 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Backlog App'),
       ),
-      body: const Center(
-        child: Text('Welcome to Backlog App'),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: mock_movies.length,
+        itemBuilder: (context, index) => MovieCard(movie: mock_movies[index]),
       ),
     );
   }
