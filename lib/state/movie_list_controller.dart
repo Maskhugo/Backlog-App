@@ -1,12 +1,28 @@
 import 'package:flutter/foundation.dart';
 
 import '../data/mock_movies.dart';
+import '../data/movie_repository.dart';
 import '../models/movie.dart';
 
 class MovieListController extends ChangeNotifier {
-  final List<Movie> _movies = List.of(mock_movies);
+  MovieListController(this._repository);
+
+  final MovieRepository _repository;
+  List<Movie> _movies = [];
+  bool _carregado = false;
 
   List<Movie> get movies => List.unmodifiable(_movies);
+  bool get carregado => _carregado;
+
+  Future<void> carregar() async {
+    final salvos = await _repository.carregarTodos();
+    _movies = salvos.isNotEmpty ? salvos : List.of(mock_movies);
+    _carregado = true;
+    notifyListeners();
+    if (salvos.isEmpty) await _persistir();
+  }
+
+  Future<void> _persistir() => _repository.salvarTodos(_movies);
 
   void addMovie({required String titulo, required String url_da_capa, int? ano}) {
     _movies.add(
@@ -18,11 +34,13 @@ class MovieListController extends ChangeNotifier {
       ),
     );
     notifyListeners();
+    _persistir();
   }
 
   void removeMovie(String id) {
     _movies.removeWhere((movie) => movie.id == id);
     notifyListeners();
+    _persistir();
   }
 
   void toggleWatched(String id) {
@@ -42,5 +60,6 @@ class MovieListController extends ChangeNotifier {
     if (index == -1) return;
     _movies[index] = update(_movies[index]);
     notifyListeners();
+    _persistir();
   }
 }
