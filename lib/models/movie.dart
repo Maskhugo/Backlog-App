@@ -2,6 +2,7 @@ class Movie {
   final String id;
   final String titulo;
   final String url_da_capa;
+  final int? ano;
   final bool foi_visto;
   final bool favorito;
   final double? nota;
@@ -10,6 +11,7 @@ class Movie {
     required this.id,
     required this.titulo,
     required this.url_da_capa,
+    this.ano,
     this.foi_visto = false,
     this.favorito = false,
     this.nota,

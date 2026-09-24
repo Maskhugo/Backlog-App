@@ -8,12 +8,13 @@ class MovieListController extends ChangeNotifier {
 
   List<Movie> get movies => List.unmodifiable(_movies);
 
-  void addMovie({required String titulo, required String url_da_capa}) {
+  void addMovie({required String titulo, required String url_da_capa, int? ano}) {
     _movies.add(
       Movie(
         id: DateTime.now().microsecondsSinceEpoch.toString(),
         titulo: titulo,
         url_da_capa: url_da_capa,
+        ano: ano,
       ),
     );
     notifyListeners();
