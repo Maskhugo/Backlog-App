@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/search_screen.dart';
 import 'state/movie_list_controller.dart';
-import 'widgets/add_movie_dialog.dart';
 import 'widgets/movie_card.dart';
 
 void main() {
@@ -45,16 +45,9 @@ class HomeScreen extends StatelessWidget {
         itemBuilder: (context, index) => MovieCard(movie: movies[index]),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final controller = context.read<MovieListController>();
-          final novoFilme = await showAddMovieDialog(context);
-          if (novoFilme != null) {
-            controller.addMovie(
-              titulo: novoFilme.titulo,
-              url_da_capa: novoFilme.url_da_capa,
-            );
-          }
-        },
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => const SearchScreen()),
+        ),
         child: const Icon(Icons.add),
       ),
     );

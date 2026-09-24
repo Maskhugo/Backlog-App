@@ -16,3 +16,14 @@ Foi assim que surgiu a ideia de desenvolver o **Backlog-App**. Ele foi criado pa
 * **Ambiente Colaborativo:** Compartilhamento de dados exclusivo com uma rede de usuários convidados.
 * **Integração com IMDb:** Dados das obras preenchidos automaticamente.
 * **Foco no Mobile:** Interface desenhada para ser rápida e fácil de usar na palma da mão.
+
+## Configuração local (token da TMDB)
+
+O app busca filmes na [TMDB](https://www.themoviedb.org/) e precisa de um API Read Access Token (v4, Bearer):
+
+1. Crie uma conta na TMDB e gere um token em [Configurações da API](https://www.themoviedb.org/settings/api).
+2. Copie `secrets.example.json` para `secrets.json` e cole seu token ali (esse arquivo é ignorado pelo git — **nunca** edite o `secrets.example.json` com o token real).
+3. Rode o app passando o arquivo de segredos:
+   ```bash
+   flutter run --dart-define-from-file=secrets.json
+   ```
