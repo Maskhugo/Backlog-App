@@ -6,6 +6,8 @@ import 'package:backlog_app/data/tmdb_repository.dart';
 import 'package:backlog_app/screens/search_screen.dart';
 import 'package:backlog_app/state/movie_list_controller.dart';
 
+import 'support/fake_movie_repository.dart';
+
 class FakeTmdbRepository extends TmdbRepository {
   @override
   Future<List<TmdbSearchResult>> buscarFilmes(String query) async {
@@ -17,7 +19,8 @@ class FakeTmdbRepository extends TmdbRepository {
 
 void main() {
   testWidgets('busca exibe resultados e adiciona ao backlog ao tocar', (tester) async {
-    final controller = MovieListController();
+    final controller = MovieListController(FakeMovieRepository());
+    await controller.carregar();
     final tamanhoInicial = controller.movies.length;
 
     await tester.pumpWidget(

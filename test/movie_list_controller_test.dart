@@ -2,12 +2,15 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:backlog_app/state/movie_list_controller.dart';
 
+import 'support/fake_movie_repository.dart';
+
 void main() {
   group('MovieListController', () {
     late MovieListController controller;
 
-    setUp(() {
-      controller = MovieListController();
+    setUp(() async {
+      controller = MovieListController(FakeMovieRepository());
+      await controller.carregar();
     });
 
     test('addMovie appends a new movie to the list', () {
@@ -54,6 +57,23 @@ void main() {
 
       final atualizado = controller.movies.firstWhere((movie) => movie.id == alvo.id);
       expect(atualizado.nota, 9.5);
+    });
+
+    test('mutações são persistidas no repositório (write-through)', () async {
+      final repository = FakeMovieRepository();
+      final outroController = MovieListController(repository);
+      await outroController.carregar();
+
+      outroController.addMovie(titulo: 'Persistido', url_da_capa: 'https://example.com/x.jpg');
+      await Future<void>.delayed(Duration.zero);
+
+      final controllerRecarregado = MovieListController(repository);
+      await controllerRecarregado.carregar();
+
+      expect(
+        controllerRecarregado.movies.any((movie) => movie.titulo == 'Persistido'),
+        isTrue,
+      );
     });
   });
 }
