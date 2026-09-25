@@ -1,5 +1,14 @@
 import '../models/movie.dart';
 
+// "Mock" quer dizer "de mentira" / "de exemplo".
+//
+// Esta lista é usada só na PRIMEIRA vez que o app abre no celular,
+// quando ainda não tem nada salvo. Assim a tela não começa vazia.
+// Depois disso, o app usa sempre os filmes que você salvou.
+//
+// `final` = a variável não pode apontar para outra lista depois.
+// `const Movie(...)` = cada filme é criado em tempo de compilação,
+// o que economiza memória.
 final List<Movie> mock_movies = [
   const Movie(
     id: '1',
